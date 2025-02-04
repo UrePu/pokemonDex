@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../Context/AppContext";
 
 // list 속성을 DOM에 전달하지 않도록 설정
 const StyledCard = styled(Link).withConfig({
@@ -43,7 +44,9 @@ const StyledNum = styled.div`
   margin-bottom: 15px;
 `;
 
-const PokemonCard = ({ pokemon, list = false, listState }) => {
+const PokemonCard = ({ pokemon, list = false }) => {
+  const { selectedPokemon, setSelectedPokemon } = useAppContext();
+
   let num = pokemon.id;
   if (num < 10) {
     num = `No. 00${num}`;
@@ -51,21 +54,19 @@ const PokemonCard = ({ pokemon, list = false, listState }) => {
     num = `No. 0${num}`;
   }
   const pokemonAdd = (pokemon) => {
-    if (listState.selectedPokemon.length >= 6) {
+    if (selectedPokemon.length >= 6) {
       alert("포켓몬은 최대 6마리까지만 추가할 수 있습니다.");
       return;
     }
-    if (listState.selectedPokemon.includes(pokemon)) {
+    if (selectedPokemon.includes(pokemon)) {
       alert("이미 추가된 포켓몬입니다.");
       return;
     }
-    listState.setSelectedPokemon([...listState.selectedPokemon, pokemon]);
+    setSelectedPokemon([...selectedPokemon, pokemon]);
   };
 
   const pokemonRemove = (pokemon) => {
-    listState.setSelectedPokemon(
-      listState.selectedPokemon.filter((p) => p !== pokemon)
-    );
+    setSelectedPokemon(selectedPokemon.filter((p) => p !== pokemon));
   };
 
   return (

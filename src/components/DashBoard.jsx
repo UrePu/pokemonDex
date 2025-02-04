@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import MonsterBall from "./MonsterBall";
+import { useAppContext } from "../Context/AppContext";
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,12 +29,13 @@ const StyledList = styled.div`
   margin-bottom: 30px;
 `;
 
-const DashBoard = ({ data, listState }) => {
+const DashBoard = ({ data }) => {
+  const { selectedPokemon } = useAppContext();
   const encodeList = () => {
     let result = [];
     let count = 0;
 
-    listState.selectedPokemon.map((pokemon) => {
+    selectedPokemon.map((pokemon) => {
       result.push(pokemon);
       count++;
     });
@@ -53,14 +55,7 @@ const DashBoard = ({ data, listState }) => {
           if (pokemon === 0) {
             return <MonsterBall key={index} />;
           } else {
-            return (
-              <PokemonCard
-                key={index}
-                pokemon={pokemon}
-                list="true"
-                listState={listState}
-              />
-            );
+            return <PokemonCard key={index} pokemon={pokemon} list="true" />;
           }
         })}
       </StyledList>
