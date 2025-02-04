@@ -52,7 +52,14 @@ const DashBoard = ({ data, listState }) => {
           if (pokemon === 0) {
             return <MonsterBall key={index} />;
           } else {
-            return <PokemonCard key={index} pokemon={pokemon} list="true" />;
+            return (
+              <PokemonCard
+                key={index}
+                pokemon={pokemon}
+                list="true"
+                listState={listState}
+              />
+            );
           }
         })}
       </StyledList>
