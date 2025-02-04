@@ -14,12 +14,17 @@ const StyledDiv = styled.div`
   padding-top: 20px;
 `;
 const PokemonList = ({ data, listState }) => {
-  console.log(data);
-
   return (
     <StyledDiv>
       {data.map((pokemon, index) => {
-        return <PokemonCard key={index} pokemon={pokemon} />;
+        return (
+          <PokemonCard
+            key={index}
+            pokemon={pokemon}
+            list={false}
+            listState={listState}
+          />
+        );
       })}
     </StyledDiv>
   );

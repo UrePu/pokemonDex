@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const StyleLink = styled(Link)`
-  background-color: red;
+const StyleLink = styled(Link).withConfig({
+  shouldForwardProp: (prop) => prop !== "provider",
+})`
+  background-color: ${(props) => (props.provider ? "black" : "red")};
   color: white;
   padding: 13px 20px;
   border: none;
@@ -11,9 +13,13 @@ const StyleLink = styled(Link)`
   text-decoration: none;
   color: white;
   &:hover {
-    background-color: darkred;
+    background-color: ${(props) => (props.provider ? "darkgray" : "darkred")};
   }
 `;
-export default function LinkBtn({ children, to }) {
-  return <StyleLink to={to}>{children}</StyleLink>;
+export default function LinkBtn({ provider, children, to }) {
+  return (
+    <StyleLink provider={provider} to={to}>
+      {children}
+    </StyleLink>
+  );
 }
