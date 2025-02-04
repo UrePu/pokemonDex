@@ -1,12 +1,9 @@
-import "./App.css";
-import StBtn from "./components/StBtn";
+import Router from "./shared/Router";
+import "./styles/mainStyle.css";
 function App() {
   return (
     <>
-      <div>
-        <StBtn primary={true}>머임?</StBtn>
-        <StBtn>Default StBtn</StBtn>
-      </div>
+      <Router />
     </>
   );
 }

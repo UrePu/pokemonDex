@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyleBtn = styled.button`
-  background-color: ${(props) => (props.primary ? "blue" : "gray")};
+  background-color: ${(props) => (props.primary ? "red" : "gray")};
   color: white;
   padding: 10px 20px;
   border: none;
@@ -9,9 +9,9 @@ const StyleBtn = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: ${(props) => (props.primary ? "darkblue" : "darkgray")};
+    background-color: ${(props) => (props.primary ? "darkred" : "darkgray")};
   }
 `;
-export default function StBtn({ primary, children }) {
+export default function Button({ primary, children }) {
   return <StyleBtn primary={primary}>{children}</StyleBtn>;
 }
