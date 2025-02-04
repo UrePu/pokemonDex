@@ -9,7 +9,8 @@ const StyledDiv = styled.div`
   border-radius: 25px;
   margin-top: 20px;
   flex-wrap: wrap;
-  width: 1200px;
+  width: calc(90% - 40px);
+  padding: 0px 20px;
   gap: 30px;
   padding-top: 20px;
 `;
