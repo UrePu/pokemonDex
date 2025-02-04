@@ -52,6 +52,8 @@ const PokemonCard = ({ pokemon, list = false }) => {
     num = `No. 00${num}`;
   } else if (num < 100) {
     num = `No. 0${num}`;
+  } else {
+    num = `No. ${num}`;
   }
   const pokemonAdd = (pokemon) => {
     if (selectedPokemon.length >= 6) {
