@@ -3,21 +3,27 @@ import styled from "styled-components";
 import DashBoard from "../components/DashBoard";
 import PokemonList from "../components/PokemonList";
 import MOCK_DATA from "../data/mockData";
+import { useState } from "react";
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100%;
 `;
 
 const pokemonData = MOCK_DATA;
 const DexPage = () => {
+  const [selectedPokemon, setSelectedPokemon] = useState([]);
   return (
     <StyledDiv>
-      <DashBoard data={pokemonData} />
-      <PokemonList data={pokemonData} />
+      <DashBoard
+        data={pokemonData}
+        listState={{ selectedPokemon, setSelectedPokemon }}
+      />
+      <PokemonList
+        data={pokemonData}
+        listState={{ selectedPokemon, setSelectedPokemon }}
+      />
     </StyledDiv>
   );
 };
