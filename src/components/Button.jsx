@@ -12,6 +12,11 @@ const StyleBtn = styled.button`
   &:hover {
     background-color: darkred;
   }
+
+  @media (max-width: 530px) {
+    font-size: 30px;
+    padding: 15px 25px;
+  }
 `;
 export default function Button({ onClick, children }) {
   return <StyleBtn onClick={onClick}>{children}</StyleBtn>;

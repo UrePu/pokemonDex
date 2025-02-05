@@ -24,7 +24,8 @@ const StyledTitle = styled.div`
 const StyledList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   gap: 70px;
   margin-bottom: 30px;
 `;

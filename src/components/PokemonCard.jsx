@@ -24,11 +24,16 @@ const StyledCard = styled(Link).withConfig({
   top: 0px;
   text-decoration: none;
   color: black;
+  padding-bottom: 16px;
 
   &:hover {
     position: relative;
     top: -10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 530px) {
+    width: 300px;
   }
 `;
 
@@ -36,12 +41,19 @@ const StyledName = styled.div`
   font-size: 20px;
   font-weight: 800;
   margin-bottom: 15px;
+
+  @media (max-width: 530px) {
+    font-size: 30px;
+  }
 `;
 
 const StyledNum = styled.div`
   font-size: 15px;
   color: gray;
   margin-bottom: 15px;
+  @media (max-width: 530px) {
+    font-size: 25px;
+  }
 `;
 
 const PokemonCard = ({ pokemon, list = false }) => {
