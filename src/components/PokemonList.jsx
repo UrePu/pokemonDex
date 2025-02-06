@@ -13,6 +13,7 @@ const StyledDiv = styled.div`
   padding: 0px 20px;
   gap: 30px;
   padding-top: 20px;
+  padding-bottom: 20px;
 `;
 const PokemonList = ({ data }) => {
   return (
