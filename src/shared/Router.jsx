@@ -3,11 +3,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DetailPage from "../pages/DetailPage";
 import IntroPage from "../pages/IntroPage";
 import DexPage from "../pages/DexPage";
-import { AppProvider } from "../Context/AppContext";
+import { Provider } from "react-redux";
+import store from "../redux/config/configStore";
 
 const Router = () => {
   return (
-    <AppProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<IntroPage />} />
@@ -15,7 +16,7 @@ const Router = () => {
           <Route path="/detail" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
-    </AppProvider>
+    </Provider>
   );
 };
 

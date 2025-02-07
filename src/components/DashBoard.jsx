@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import MonsterBall from "./MonsterBall";
-import { useAppContext } from "../Context/AppContext";
+import { useSelector } from "react-redux";
+
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,6 +15,7 @@ const StyledContainer = styled.div`
   border-radius: 25px;
   margin-top: 30px;
 `;
+
 const StyledTitle = styled.div`
   font-size: 20px;
   font-weight: 800;
@@ -21,6 +23,7 @@ const StyledTitle = styled.div`
   margin-bottom: 30px;
   color: red;
 `;
+
 const StyledList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -30,16 +33,15 @@ const StyledList = styled.div`
   margin-bottom: 30px;
 `;
 
-const DashBoard = ({ data }) => {
-  const { selectedPokemon } = useAppContext();
-  const encodeList = () => {
-    let result = [];
-    let count = 0;
+const DashBoard = () => {
+  const selectedPokemon = useSelector(
+    (state) => state.selectPokemon.selectedPokemon
+  );
 
-    selectedPokemon.map((pokemon) => {
-      result.push(pokemon);
-      count++;
-    });
+  const encodeList = (pokemonList) => {
+    let result = [...pokemonList];
+
+    let count = result.length;
     if (count < 6) {
       for (let i = 0; i < 6 - count; i++) {
         result.push(0);
@@ -48,17 +50,18 @@ const DashBoard = ({ data }) => {
 
     return result;
   };
+
   return (
     <StyledContainer>
       <StyledTitle>나만의 포켓몬</StyledTitle>
       <StyledList>
-        {encodeList().map((pokemon, index) => {
-          if (pokemon === 0) {
-            return <MonsterBall key={index} />;
-          } else {
-            return <PokemonCard key={index} pokemon={pokemon} list="true" />;
-          }
-        })}
+        {encodeList(selectedPokemon).map((pokemon, index) =>
+          pokemon === 0 ? (
+            <MonsterBall key={index} />
+          ) : (
+            <PokemonCard key={index} pokemon={pokemon} list="true" />
+          )
+        )}
       </StyledList>
     </StyledContainer>
   );

@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import { Link } from "react-router-dom";
-import { useAppContext } from "../Context/AppContext";
+import { addPokemon, removePokemon } from "../redux/slices/selectPokemonSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 // list 속성을 DOM에 전달하지 않도록 설정
 const StyledCard = styled(Link).withConfig({
@@ -57,8 +58,7 @@ const StyledNum = styled.div`
 `;
 
 const PokemonCard = ({ pokemon, list = false }) => {
-  const { selectedPokemon, setSelectedPokemon } = useAppContext();
-
+  const dispatch = useDispatch();
   let num = pokemon.id;
   if (num < 10) {
     num = `No. 00${num}`;
@@ -67,21 +67,6 @@ const PokemonCard = ({ pokemon, list = false }) => {
   } else {
     num = `No. ${num}`;
   }
-  const pokemonAdd = (pokemon) => {
-    if (selectedPokemon.length >= 6) {
-      alert("포켓몬은 최대 6마리까지만 추가할 수 있습니다.");
-      return;
-    }
-    if (selectedPokemon.includes(pokemon)) {
-      alert("이미 추가된 포켓몬입니다.");
-      return;
-    }
-    setSelectedPokemon([...selectedPokemon, pokemon]);
-  };
-
-  const pokemonRemove = (pokemon) => {
-    setSelectedPokemon(selectedPokemon.filter((p) => p !== pokemon));
-  };
 
   return (
     <StyledCard list={list} to={`/detail?id=${pokemon.id}`}>
@@ -92,9 +77,9 @@ const PokemonCard = ({ pokemon, list = false }) => {
         onClick={(e) => {
           e.preventDefault();
           if (!list) {
-            pokemonAdd(pokemon);
+            dispatch(addPokemon(pokemon));
           } else {
-            pokemonRemove(pokemon);
+            dispatch(removePokemon(pokemon));
           }
         }}
       >

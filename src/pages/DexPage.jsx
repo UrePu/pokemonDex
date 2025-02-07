@@ -14,7 +14,7 @@ const pokemonData = MOCK_DATA;
 const DexPage = () => {
   return (
     <StyledDiv>
-      <DashBoard data={pokemonData} />
+      <DashBoard />
       <PokemonList data={pokemonData} />
     </StyledDiv>
   );
