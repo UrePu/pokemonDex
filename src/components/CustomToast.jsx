@@ -1,7 +1,12 @@
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-
+import styled from "styled-components";
+const styledToast = styled(ToastContainer)`
+  width: 150px
+  font-size: 20px;
+  }
+`;
 const CustomToast = () => {
   return (
     <ToastContainer
