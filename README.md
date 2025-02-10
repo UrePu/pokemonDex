@@ -61,7 +61,7 @@ yarn dev # 또는 npm run dev
 
 4. 프로젝트 배포 링크
 ```sh
-https://pokemon-dex-git-rtk-urepus-projects.vercel.app/
+https://pokemon-dex-git-rtk-urepus-projects.vercel.app/(https://pokemon-dex-git-rtk-urepus-projects.vercel.app/)
 ```
 ## Redux 상태 관리 개요
 
