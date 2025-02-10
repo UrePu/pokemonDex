@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import { addPokemon, removePokemon } from "../redux/slices/selectPokemonSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // list 속성을 DOM에 전달하지 않도록 설정
 const StyledCard = styled(Link).withConfig({

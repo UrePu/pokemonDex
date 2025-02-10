@@ -3,6 +3,9 @@ import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import MOCK_DATA from "../data/mockData";
 import LinkBtn from "../components/LinkBtn";
+import Button from "../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { addPokemon, removePokemon } from "../redux/slices/selectPokemonSlice";
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,12 +33,19 @@ const StyledDetail = styled.div`
   margin-bottom: 30px;
 `;
 const DetailPage = () => {
+  const selectedPokemon = useSelector(
+    (state) => state.selectPokemon.selectedPokemon
+  );
+  const dispatch = useDispatch();
   const data = MOCK_DATA;
   const [searchParams] = useSearchParams();
+
   const id = searchParams.get("id");
   const pokemon = data.find((pokemon) => pokemon.id === Number(id));
 
   const types = pokemon.types.join(", ");
+
+  const right = selectedPokemon.some((pokemon) => pokemon.id === Number(id));
 
   return (
     <StyledDiv>
@@ -46,6 +56,17 @@ const DetailPage = () => {
       <LinkBtn provider to={"/dex"}>
         돌아가기
       </LinkBtn>
+      <Button
+        onClick={() => {
+          if (right) {
+            dispatch(removePokemon(pokemon));
+          } else {
+            dispatch(addPokemon(pokemon));
+          }
+        }}
+      >
+        {right ? "방출" : "추가"}
+      </Button>
     </StyledDiv>
   );
 };
