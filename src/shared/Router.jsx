@@ -5,6 +5,7 @@ import IntroPage from "../pages/IntroPage";
 import DexPage from "../pages/DexPage";
 import { Provider } from "react-redux";
 import store from "../redux/config/configStore";
+import CustomToast from "../components/CustomToast";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
           <Route path="/detail" element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
+      <CustomToast />;
     </Provider>
   );
 };

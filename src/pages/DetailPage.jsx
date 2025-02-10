@@ -53,20 +53,23 @@ const DetailPage = () => {
       <StyledName>{pokemon.korean_name}</StyledName>
       <StyledType>타입 : {types}</StyledType>
       <StyledDetail>{pokemon.description}</StyledDetail>
-      <LinkBtn provider to={"/dex"}>
-        돌아가기
-      </LinkBtn>
-      <Button
-        onClick={() => {
-          if (right) {
-            dispatch(removePokemon(pokemon));
-          } else {
-            dispatch(addPokemon(pokemon));
-          }
-        }}
-      >
-        {right ? "방출" : "추가"}
-      </Button>
+      <div>
+        <LinkBtn style to={"/dex"}>
+          돌아가기
+        </LinkBtn>
+        <Button
+          style
+          onClick={() => {
+            if (right) {
+              dispatch(removePokemon(pokemon));
+            } else {
+              dispatch(addPokemon(pokemon));
+            }
+          }}
+        >
+          {right ? "방출" : "추가"}
+        </Button>
+      </div>
     </StyledDiv>
   );
 };

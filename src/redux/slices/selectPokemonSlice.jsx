@@ -1,23 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const initialState = {
   selectedPokemon: [],
 };
-
+const notify = (str) => {
+  if (str === "max") {
+    toast("포켓몬은 최대 6마리까지만 추가할 수 있습니다.");
+  }
+  if (str === "exist") {
+    toast("이미 추가된 포켓몬입니다.");
+  }
+  return;
+};
 const selectPokemonSlice = createSlice({
   name: "selectPokemon",
   initialState,
   reducers: {
     addPokemon: (state, action) => {
       if (state.selectedPokemon.length >= 6) {
-        alert("포켓몬은 최대 6마리까지만 추가할 수 있습니다.");
+        notify("max");
         return;
       }
       const isExist = state.selectedPokemon.some(
         (p) => p.id === action.payload.id
       );
       if (isExist) {
-        alert("이미 추가된 포켓몬입니다.");
+        notify("exist");
         return;
       }
       state.selectedPokemon.push(action.payload);
